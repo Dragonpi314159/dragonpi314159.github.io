@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bastila's Custom Words</title>
+<link rel="stylesheet" href="css/game.css">
+</head>
+<body>
+  <div id="app">
+    <header>
+      <div id="level">Level 1</div>
+      <div id="status"></div>
+      <div id="timer">2:00</div>
+    </header>
+    <div id="bar"><div id="barfill"></div><div id="goalmark"></div></div>
+    <div id="score"><span id="scoreval">0</span> / <span id="goalval">0</span> pts <span id="auto"></span></div>
+    <div id="tiles"></div>
+    <div id="found"></div>
+    <div id="overlay" hidden></div>
+  </div>
+  <div id="feed"></div>
+  <script type="module" src="js/overlay.js"></script>
+</body>
+</html>

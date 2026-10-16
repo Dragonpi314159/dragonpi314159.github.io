@@ -1,0 +1,1 @@
+{"type":"module","name":"bastilas-custom-words","version":"0.1.0","private":true,"scripts":{"test":"node tests/test.mjs","build:words":"node scripts/build-words.mjs","build:words:full":"node scripts/build-words.mjs --full"}}

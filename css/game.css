@@ -1,0 +1,32 @@
+:root { --accent: #9b5cff; --tile: 84px; --bg: #12101c; --fg: #fff; }
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; font-family: "Segoe UI", system-ui, sans-serif; color: var(--fg); overflow: hidden; }
+body { background: var(--bg); }
+body.transparent { background: transparent; }
+#app { position: relative; width: min(100vw, 1100px); margin: 0 auto; padding: 16px 20px; }
+header { display: flex; justify-content: space-between; align-items: center; font-weight: 800; font-size: 26px; text-shadow: 0 2px 6px #000a; }
+#status { font-size: 13px; font-weight: 500; opacity: .75; }
+#timer { font-variant-numeric: tabular-nums; }
+#bar { position: relative; height: 14px; background: #ffffff26; border-radius: 99px; margin: 8px 0 4px; overflow: hidden; }
+#barfill { height: 100%; width: 0; background: var(--accent); transition: width .4s; }
+#goalmark { position: absolute; top: 0; bottom: 0; width: 3px; background: #fff; left: 40%; }
+#score { font-size: 18px; text-shadow: 0 2px 6px #000a; margin-bottom: 14px; }
+#auto { font-size: 12px; opacity: .7; margin-left: 8px; }
+#tiles { position: relative; height: calc(var(--tile) + 16px); margin: 0 auto; }
+.tile { position: absolute; top: 8px; width: var(--tile); height: var(--tile); border-radius: 14px; background: linear-gradient(160deg, #fff, #e3d9ff);
+  color: #25103f; display: grid; place-items: center; font-size: calc(var(--tile) * .55); font-weight: 900; text-transform: uppercase;
+  box-shadow: 0 6px 14px #0006; transition: transform .55s cubic-bezier(.3,1.4,.5,1); }
+.tile small { position: absolute; right: 7px; bottom: 4px; font-size: calc(var(--tile) * .2); font-weight: 700; }
+.tile.hid { background: linear-gradient(160deg, #6a5a8f, #463a66); color: #fff; }
+.tile.hid small { display: none; }
+#found { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; max-height: 38vh; overflow: hidden; }
+.chip { padding: 4px 10px; border-radius: 99px; background: #ffffff1f; font-size: 15px; text-shadow: 0 1px 3px #000a; animation: pop .35s; }
+.chip b { color: var(--accent); filter: brightness(1.6); }
+.chip i { opacity: .7; font-style: normal; margin-left: 4px; }
+@keyframes pop { from { transform: scale(.6); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+#overlay { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; background: #000b; border-radius: 18px; padding: 24px; line-height: 1.5; }
+#overlay h2 { margin: 0 0 6px; font-size: 40px; }
+#overlay .stars { font-size: 46px; letter-spacing: 6px; }
+#overlay .sub { opacity: .8; }
+#overlay[hidden] { display: none; }
+#feed { position: fixed; left: 8px; bottom: 6px; font-size: 12px; opacity: .6; }

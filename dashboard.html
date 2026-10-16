@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Bastila's Custom Words - Dashboard</title>
+<link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+<main>
+  <h1>Bastila's Custom Words <small>dashboard</small></h1>
+  <p class="muted">Everything here is saved in your browser and baked into the OBS link at the bottom. Nothing is stored on a server.</p>
+
+  <section class="card" id="sec-twitch">
+    <h2>1 · Connect Twitch</h2>
+    <div class="row"><label>Twitch Client ID <span class="muted">(one-time app setup, see README)</span></label><input class="secret" data-path="twitch.clientId" placeholder="paste client id"></div>
+    <div class="row"><button id="authBtn" class="primary">Authorize with Twitch</button><span id="authStatus" class="muted"></span></div>
+    <div class="row"><label>Channel to read chat from</label><input class="secret" data-path="twitch.channel" placeholder="channel login (auto-filled)"></div>
+    <div class="row"><label>Account login</label><input class="secret" data-path="twitch.login" placeholder="auto-filled"></div>
+    <div class="row"><label>User ID</label><input class="secret" data-path="twitch.userId" placeholder="auto-filled"></div>
+    <div class="row"><label>Access token</label><input class="secret" data-path="twitch.token" placeholder="auto-filled"></div>
+    <p class="muted small">Private fields stay blurred until you click them. Reading chat works without a token; the token is only used if you turn on chat posting below.</p>
+    <p class="muted small">Redirect URL to register in the Twitch developer console: <code id="redirectUrl"></code></p>
+  </section>
+
+  <section class="card"><h2>2 · Game</h2><div id="gameSliders"></div></section>
+  <section class="card"><h2>3 · Hidden letters, shuffle &amp; padlocks</h2><div id="featureSliders"></div></section>
+
+  <section class="card">
+    <h2>4 · Chat commands</h2>
+    <p class="muted small">Every command starts off. Tick one to turn it on, then pick its name and who may use it. Streamer = broadcaster only, Mod = mods + broadcaster.</p>
+    <div id="cmdTable"></div>
+  </section>
+
+  <section class="card">
+    <h2>5 · Word ban list</h2>
+    <p class="muted small">Banned words can't be answers or base words. Words stay blurred; click one to reveal it.</p>
+    <div class="row"><input class="secret" id="banWordIn" placeholder="add a word to ban"><button id="banWordBtn">Add</button></div>
+    <div class="chips" id="banWordList"></div>
+  </section>
+
+  <section class="card">
+    <h2>6 · Player ban list</h2>
+    <p class="muted small">Banned players' guesses are silently ignored.</p>
+    <div class="row"><input class="secret" id="banPlayerIn" placeholder="twitch username"><button id="banPlayerBtn">Add</button></div>
+    <div class="chips" id="banPlayerList"></div>
+  </section>
+
+  <section class="card">
+    <h2>7 · Custom words</h2>
+    <p class="muted small">Extra words chat can score with (inside jokes, emote names...). Letters only, 2-12 long.</p>
+    <div class="row"><input id="customIn" placeholder="add a custom word"><button id="customBtn">Add</button></div>
+    <label class="check"><input type="checkbox" data-path="lists.customAreBases"> Custom words (5-9 letters) can also be used as the scrambled word</label>
+    <div class="chips" id="customList"></div>
+  </section>
+
+  <section class="card">
+    <h2>8 · Look</h2>
+    <div id="lookSliders"></div>
+  </section>
+
+  <section class="card">
+    <h2>9 · Chat posting <span class="muted">(optional)</span></h2>
+    <div class="row"><label>Post game announcements to chat</label>
+      <select data-path="chat.mode"><option value="off">Off</option><option value="twitch">Post as the authorized account</option><option value="streamerbot">Through Streamer.bot</option></select></div>
+    <label class="check"><input type="checkbox" data-path="chat.announceStart"> Announce when a level starts</label>
+    <label class="check"><input type="checkbox" data-path="chat.announceLevelUp"> Announce level cleared</label>
+    <label class="check"><input type="checkbox" data-path="chat.announceEnd"> Announce when time runs out</label>
+    <div class="row"><label>Streamer.bot WebSocket URL</label><input data-path="chat.streamerbotUrl"></div>
+    <div class="row"><label>Streamer.bot action name</label><input data-path="chat.streamerbotAction"></div>
+  </section>
+
+  <section class="card" id="sec-link">
+    <h2>10 · Your OBS link</h2>
+    <p class="muted small">Add this as an OBS <b>Browser Source</b> (width 1100, height 420 works well). Changing settings means pasting the new link.</p>
+    <div class="row"><input class="secret" id="obsLink" readonly><button id="copyBtn" class="primary">Copy</button></div>
+    <p class="warn" id="linkWarn" hidden></p>
+    <div class="row"><a id="openPreview" target="_blank" rel="noopener">Open game</a> · <a id="openDemo" target="_blank" rel="noopener">Open demo (fake chat)</a></div>
+    <div class="row"><label>Load settings from a link</label><input id="loadIn" placeholder="paste a previous link"><button id="loadBtn">Load</button></div>
+    <div class="row"><button id="resetBtn" class="danger">Reset everything to defaults</button></div>
+  </section>
+</main>
+<script type="module" src="js/dashboard.js"></script>
+</body>
+</html>
